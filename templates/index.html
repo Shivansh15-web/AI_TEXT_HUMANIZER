@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HumanizeAI - AI Text & Document Humanizer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+
+    <nav>
+
+        <div class="logo">✦ HumanizeAI</div>
+
+        <span>AI Writing & Document Assistant</span>
+
+    </nav>
+
+
+    <!-- Website Heading -->
+
+    <header>
+
+        <div class="tag">
+            INTELLIGENT TEXT & DOCUMENT REWRITING
+        </div>
+
+        <h1>
+            Make AI Text Sound <span>Human.</span>
+        </h1>
+
+        <p>
+            Transform robotic writing into natural,
+            clear and engaging content while preserving
+            your document formatting wherever possible.
+        </p>
+
+    </header>
+
+
+    <!-- Main Container -->
+
+    <main class="container">
+
+
+        <!-- Writing Style Selection -->
+
+        <div class="toolbar">
+
+            <label for="mode">Writing Style:</label>
+
+            <select id="mode">
+
+                <option value="Natural">Natural</option>
+
+                <option value="Academic">Academic</option>
+
+                <option value="Professional">Professional</option>
+
+                <option value="Casual">Casual</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Document Upload Section -->
+
+        <div class="upload-section" id="dropZone">
+
+            <div class="upload-icon">📄</div>
+
+            <h3>Upload Your Document</h3>
+
+            <p>
+                Drag and drop your document here
+                or browse files.
+            </p>
+
+            <input
+                type="file"
+                id="fileInput"
+                accept=".pdf,.docx,.txt"
+                hidden
+                onchange="uploadFile(this.files[0])"
+            >
+
+            <button
+                type="button"
+                class="upload-btn"
+                onclick="document.getElementById('fileInput').click()">
+
+                Browse Files
+
+            </button>
+
+            <p class="file-info">
+
+                Supported formats: PDF, DOCX, TXT
+
+                | Maximum 10 MB
+
+            </p>
+
+            <p class="file-info">
+
+                Maximum text limit: 25,000 characters
+
+            </p>
+
+            <p id="fileName"></p>
+
+
+            <!-- Document Humanization Section -->
+
+            <div class="document-actions">
+
+                <button
+                    type="button"
+                    id="documentBtn"
+                    onclick="humanizeDocument()"
+                    disabled>
+
+                    ✦ Humanize Document
+
+                </button>
+
+
+                <!-- Loading Animation -->
+
+                <div id="documentLoader" hidden>
+
+                    <div class="loading-track">
+
+                        <div class="loading-animation"></div>
+
+                    </div>
+
+                    <p>
+                        Processing your document.
+                        Please wait...
+                    </p>
+
+                    <p class="file-info">
+                        Larger documents may take several minutes.
+                    </p>
+
+                </div>
+
+
+                <!-- Document Processing Status -->
+
+                <p id="documentStatus" role="status"></p>
+
+
+                <!-- Download Button -->
+
+                <a
+                    id="downloadFile"
+                    class="download-btn"
+                    hidden>
+
+                    ↓ Download Humanized File
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Normal Text Humanization Section -->
+
+        <div style="text-align: center; margin: 30px 0;">
+
+            <h2>Or Humanize Text Directly</h2>
+
+            <p style="color: #94a3b8; margin-top: 10px;">
+
+                Paste your text below to rewrite it instantly.
+
+            </p>
+
+        </div>
+
+
+        <!-- Text Editor -->
+
+        <div class="editor">
+
+
+            <!-- Original Text Panel -->
+
+            <div class="panel">
+
+                <h3>Original Text</h3>
+
+                <textarea
+                    id="inputText"
+                    placeholder="Paste your AI-generated text here..."
+                    maxlength="25000"></textarea>
+
+                <div class="footer">
+
+                    <span id="inputCount">
+                        0 words
+                    </span>
+
+                    <button
+                        type="button"
+                        onclick="clearText()">
+
+                        Clear
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Humanized Text Panel -->
+
+            <div class="panel">
+
+                <h3>Humanized Text</h3>
+
+                <textarea
+                    id="outputText"
+                    placeholder="Your humanized text will appear here..."
+                    readonly></textarea>
+
+                <div class="footer">
+
+                    <span id="outputCount">
+                        0 words
+                    </span>
+
+                    <button
+                        type="button"
+                        onclick="copyText()">
+
+                        Copy
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Humanize Text Button -->
+
+        <button
+            type="button"
+            id="humanizeBtn"
+            onclick="humanizeText()">
+
+            ✦ Humanize Text
+
+        </button>
+
+
+        <!-- Text Processing Status -->
+
+        <p id="status" role="status"></p>
+
+
+        <!-- Privacy and Formatting Information -->
+
+        <div style="
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.8;
+            margin-top: 25px;
+        ">
+
+            <p>
+                Document text is processed using Gemini AI.
+            </p>
+
+            <p>
+                Original formatting is preserved wherever possible.
+            </p>
+
+            <p>
+                Review your humanized content before using it.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- Website Footer -->
+
+    <footer class="bottom">
+
+        HumanizeAI — Write naturally, communicate better.
+
+    </footer>
+
+
+    <!-- JavaScript Connection -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

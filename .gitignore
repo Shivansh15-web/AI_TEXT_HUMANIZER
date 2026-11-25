@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+
+# Secret API keys
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Vercel configuration
+.vercel/
+
+# VS Code settings
+.vscode/
+venv/
+.venv/
+.env
+__pycache__/
+*.pyc
+.vscode/
+uploads/
