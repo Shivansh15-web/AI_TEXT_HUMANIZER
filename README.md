@@ -215,3 +215,7 @@ academic and professional integrity guidelines.
 
 If you find this project useful, consider giving 
 the repository a star.
+
+## Live Demo
+
+[🚀 Launch HumanizeAI](https://ai-text-humanizer-chi.vercel.app)
